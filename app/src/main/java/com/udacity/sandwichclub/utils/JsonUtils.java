@@ -18,20 +18,20 @@ public class JsonUtils {
             JSONObject sandwichJSON = new JSONObject(json);
 
             JSONObject name = sandwichJSON.getJSONObject("name");
-            parsedSandwich.setMainName(name.getString("mainName"));
+            parsedSandwich.setMainName(name.optString("mainName"));
             JSONArray akaArray = name.getJSONArray("alsoKnownAs");
-            List<String> alsoKnownAs = new ArrayList();
+            List<String> alsoKnownAs = new ArrayList<>();
             for(int i=0; i<akaArray.length(); i++){
                 alsoKnownAs.add(akaArray.getString(i));
             }
             parsedSandwich.setAlsoKnownAs(alsoKnownAs);
 
-            parsedSandwich.setPlaceOfOrigin(sandwichJSON.getString("placeOfOrigin"));
-            parsedSandwich.setDescription(sandwichJSON.getString("description"));
-            parsedSandwich.setImage(sandwichJSON.getString("image"));
+            parsedSandwich.setPlaceOfOrigin(sandwichJSON.optString("placeOfOrigin"));
+            parsedSandwich.setDescription(sandwichJSON.optString("description"));
+            parsedSandwich.setImage(sandwichJSON.optString("image"));
 
             JSONArray ingredientsArray = sandwichJSON.getJSONArray("ingredients");
-            List<String> ingredients = new ArrayList();
+            List<String> ingredients = new ArrayList<>();
             for(int i=0; i<ingredientsArray.length(); i++){
                 ingredients.add(ingredientsArray.getString(i));
             }

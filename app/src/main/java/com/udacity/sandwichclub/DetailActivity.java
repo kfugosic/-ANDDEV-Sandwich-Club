@@ -61,6 +61,8 @@ public class DetailActivity extends AppCompatActivity {
         populateUI(sandwich);
         Picasso.with(this)
                 .load(sandwich.getImage())
+                .placeholder(R.drawable.loading)
+                .error(R.drawable.ic_do_not_disturb_alt_black_24dp)
                 .into(ingredientsIv);
 
         setTitle(sandwich.getMainName());
@@ -87,7 +89,7 @@ public class DetailActivity extends AppCompatActivity {
         }
         mAkaDisplay.setText(sb.toString());
 
-        sb = new StringBuilder();
+        sb.setLength(0);
         List<String> ingridients = sandwich.getIngredients();
         first = true;
         for (String ingridient : ingridients) {
